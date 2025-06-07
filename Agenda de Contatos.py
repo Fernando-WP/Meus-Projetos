@@ -18,6 +18,7 @@ while True:
 
     # Adiciona contato
     if escolhar_de_opções == 1:
+        os.system('cls')
         nome = str(input('Digite o nome do contato: '))
         telefone = int(input('Digite o número do contato: '))
         email = str(input('Digite o e-mail do contato: '))

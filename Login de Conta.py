@@ -20,14 +20,14 @@ def carregar_contas():
                         'Número da Casa': dados[4]
                     })
     except FileNotFoundError:
-        with open('contas.txt', 'w') as f:
+        with open('contas.txt', 'r') as f:
             pass
     return conta
 
 def salvar_contas():
-    with open('contas.text', 'w') as f:
+    with open('contas.txt', 'w') as f:
         for c in conta:
-            f.write(f'{c['Nome do Usuário']}|{c['Email']}|{c['Senha']}|{c['CEP']}|{c['Número da Cesa']}\n')
+            f.write(f'{c['Nome do Usuário']}|{c['Email']}|{c['Senha']}|{c['CEP']}|{c['Número da Casa']}\n')
 
 def conta_criada():
     entrada = entry_email_ou_usuário.get().strip()
@@ -77,8 +77,8 @@ def janela_criar_conta():
     entry_cep = ctk.CTkEntry(janela_criar_conta, placeholder_text='CEP')
     entry_cep.pack(pady=5)
 
-    entry_números_da_casa = ctk.CTkEntry(janela_criar_conta, placeholder_text='Número da Casa')
-    entry_números_da_casa.pack(pady=5)
+    entry_número_da_casa = ctk.CTkEntry(janela_criar_conta, placeholder_text='Número da Casa')
+    entry_número_da_casa.pack(pady=5)
 
     def criar_conta():
         nome_do_usuário = entry_nome_do_usuário.get().strip()
@@ -86,9 +86,9 @@ def janela_criar_conta():
         senha = entry_senha.get().strip()
         confirmar_senha = entry_confirmar_senha.get().strip()
         cep = entry_cep.get().strip()
-        números_da_casa = entry_números_da_casa.get().strip()
+        número_da_casa = entry_número_da_casa.get().strip()
 
-        if not nome_do_usuário or not email or not senha or not confirmar_senha or not cep or not números_da_casa:
+        if not nome_do_usuário or not email or not senha or not confirmar_senha or not cep or not número_da_casa:
             messagebox.showerror('Erro', 'Preencha todos os campos!')
             return
         
@@ -118,7 +118,7 @@ def janela_criar_conta():
             messagebox.showerror('Erro', 'CEP deve conter 8 dígitos!')
             return
         
-        if not números_da_casa.isdigit():
+        if not número_da_casa.isdigit():
             messagebox.showerror('Erro', 'Número da casa deve conter somente números')
             return
         
@@ -127,7 +127,7 @@ def janela_criar_conta():
             'Email': email,
             'Senha': senha,
             'CEP': cep,
-            'Números da Casa': números_da_casa
+            'Número da Casa': número_da_casa
         })
 
         salvar_contas()
